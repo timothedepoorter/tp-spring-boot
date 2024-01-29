@@ -1,10 +1,7 @@
 package fr.timothe.tpspringboot.thermometre;
 
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,13 @@ public class ThermometreController {
     @GetMapping("/param")
     public Thermometre getTemperatureEveryFormatParam(@RequestParam double celcius) {
         return thermometreService.getTemperatureEveryFormat(celcius);
+    }
+
+    @PostMapping(path = "/conver")
+    public Thermometre convertTemperature(@RequestBody ThermometreDto thermometreDto) {
+        return this.thermometreService.convertTemperature(
+                thermometreDto.getValue(),
+                thermometreDto.getUnit()
+        );
     }
 }
