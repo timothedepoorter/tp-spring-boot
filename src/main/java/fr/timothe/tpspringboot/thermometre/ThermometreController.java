@@ -19,7 +19,11 @@ public class ThermometreController {
 
     @GetMapping()
     public Thermometre getTemperatureEveryFormat() {
+        return thermometreService.getTemperatureEveryFormat(0.0);
+    }
 
-        return thermometreService.getTemperatureEveryFormat();
+    @GetMapping("/param")
+    public Thermometre getTemperatureEveryFormatParam(@RequestParam double celcius) {
+        return thermometreService.getTemperatureEveryFormat(celcius);
     }
 }
